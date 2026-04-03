@@ -9,7 +9,14 @@ docker build -f ./docker/Dockerfile.gpu -t tensorflow2_10_1_gpu:Gen_deep_learn .
 
 docker run --gpus all -it --rm  tensorflow2_10_1_gpu:Gen_deep_learn
 
-docker run -it --rm --gpus all -p 8888:8888 -v "$(pwd)/notebooks:/tf/notebooks" tensorflow/tensorflow:2.10.1-gpu-jupyter
+* remove the container when stopped - start the container in the folder ./Generative_Deep_Learning
+docker run -it --rm --gpus all -p 8888:8888 -v "$(pwd)/notebooks:/tf" tensorflow/tensorflow:2.10.1-gpu-jupyter
+
+* give the container the name tf210gpu - start the container in the folder ./Generative_Deep_Learning
+docker run -it --name tf210gpu --gpus all -p 8888:8888 -v "$(pwd)/notebooks:/tf" tensorflow/tensorflow:2.10.1-gpu-jupyter
+
+* start the persistent container
+docker start -ai tf210gpu
 
 C:\Python\Python310
 
